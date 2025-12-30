@@ -1,0 +1,71 @@
+@custom-variant dark (&:where(.dark, .dark *));
+
+@import "tailwindcss";
+
+@source "../views/**/*.php";
+
+@theme {
+    --color-primary: #0ea5e9;
+    --color-secondary: #0284c7;
+    --color-accent: #86efac;
+    --color-background-light: #f0f9ff;
+    --color-background-dark: #0f172a;
+    --color-surface-light: #ffffff;
+    --color-surface-dark: #1e293b;
+
+    --font-display: sans-serif;
+    --font-body: sans-serif;
+
+    --radius-default: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-2xl: 2rem;
+    --radius-3xl: 3rem;
+
+    --shadow-soft: 0 10px 40px -10px rgba(14, 165, 233, 0.15);
+    --shadow-glow: 0 0 20px rgba(134, 239, 172, 0.6);
+}
+
+@utility glass-panel {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+:where(.dark) .glass-panel{
+    background: rgba(30, 41, 59, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@utility glass-card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(255, 255, 255,0.6) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255 0.8);
+}
+
+:where(.dark) .glass-card {
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.9) 0%, rgba(15,23,42,0.6) 100%);
+    border: 1px solid rgba(255,255,255, 0.05);
+}
+
+@utility gradient-text {
+    background: linear-gradient(to right, #0ea5e9, #0284c7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@utility float{
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {transform: translateY(0px);}
+    50% {transform: translateY(-20px);}
+    100% {transform: translateY(0px);}
+}
+
+@layer base{
+    body{
+        font-family: sans-serif;
+    }
+}
