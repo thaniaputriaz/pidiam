@@ -7,6 +7,7 @@ define('BASE_URL', $base_url == '/' ? '' : $base_url);
 require "../config/database.php";
 require "../controllers/PermohonanController.php";
 require "../controllers/HomeController.php";
+require "../controllers/AdminController.php";
 
 
 $url = $_GET['url'] ?? 'home';
@@ -46,7 +47,13 @@ switch($controller){
         }
         break;
     
-    case 'pelanggan' :
+    case 'admin' :
+        $ctrl = new AdminController($conn);
+        switch($method){
+            case 'index' :
+                $ctrl->index();
+                break;
+        }
 
 
 }
