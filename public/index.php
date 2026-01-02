@@ -17,6 +17,15 @@ $controller = $parts[0] ?? 'home';
 $method = $parts[1] ?? 'index';
 $id = $parts[2] ?? null;
 
+if (
+    $controller === 'admin' &&
+    !isset($_SESSION['admin']) &&
+    !in_array($method, ['login', 'loginPage'])
+) {
+    header("Location: index.php?url=admin/loginPage");
+    exit;
+}
+
 switch($controller){
     case 'home':
         $ctrl = new HomeController();
@@ -52,6 +61,12 @@ switch($controller){
         switch($method){
             case 'index' :
                 $ctrl->index();
+                break;
+            case 'loginPage' :
+                $ctrl->loginPage();
+                break;
+            case 'login' :
+                $ctrl->login();
                 break;
         }
 

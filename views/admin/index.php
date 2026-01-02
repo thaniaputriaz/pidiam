@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    ADMIN Dashboard
+    <h1>DASHBOARD PAGE</h1>
+    <a href="<?= BASE_URL ?>/index.php?url=admin/login">LOGIN WEI</a>
+    
+    
 </body>
 </html>
