@@ -6,7 +6,8 @@ class Permohonan {
     }
 
     public function all(){
-        return mysqli_query($this->db, "SELECT * FROM permohonan_sambungan" );
+        $result = mysqli_query($this->db, "SELECT * FROM permohonan_sambungan" );
+        return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
 
     public function create($data){

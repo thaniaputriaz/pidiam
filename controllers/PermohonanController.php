@@ -10,12 +10,6 @@ class PermohonanController{
 
         $this->permohonan = new Permohonan($this->db);
     }
-
-    public function index(){
-        $data = $this->permohonan->all();
-
-        require "../views/permohonan/index.php";
-    }
     
     public function store($data){
         $nik = $data["nik"];
@@ -30,8 +24,15 @@ class PermohonanController{
             exit;
         }
 
-        
+    }
 
+    public function index(){
+        require "../views/permohonan/index.php";
+    }
+
+    public function sambunganBaru(){
+        $data = $this->permohonan->all();
+        require "../views/admin/sambungan-baru.php";
     }
 }
 ?>

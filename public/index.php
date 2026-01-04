@@ -1,13 +1,14 @@
 <?php
 session_start();
 
-$base_url = dirname($_SERVER['SCRIPT_NAME']);
-define('BASE_URL', $base_url == '/' ? '' : $base_url);
+$base_url = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
+define('BASE_URL', $base_url);
+
 
 require "../config/database.php";
 require "../controllers/PermohonanController.php";
 require "../controllers/HomeController.php";
-require "../controllers/AdminController.php";
+require "../controllers/AuthController.php";
 
 
 $url = $_GET['url'] ?? 'home';
@@ -19,10 +20,14 @@ $id = $parts[2] ?? null;
 
 if (
     $controller === 'admin' &&
-    !isset($_SESSION['admin']) &&
+    (
+        !isset($_SESSION['user']) ||
+        $_SESSION['user']['role'] !== 'admin'
+    ) &&
     !in_array($method, ['login', 'loginPage'])
 ) {
-    header("Location: index.php?url=admin/loginPage");
+    header("Location: " . BASE_URL . "/admin/loginPage"
+);
     exit;
 }
 
@@ -44,29 +49,36 @@ switch($controller){
             case 'store' :
                 $ctrl->store($_POST);
                 break;
-            case 'edit' :
-                $ctrl->edit($id);
-                break;
-            case 'update' :
-                $ctrl->update($id, $_POST);
-                break;
-            case 'delete' :
-                $ctrl->delete();
-                break;
+           
         }
         break;
     
     case 'admin' :
-        $ctrl = new AdminController($conn);
+        
         switch($method){
             case 'index' :
+                $ctrl = new AuthController($conn);
                 $ctrl->index();
                 break;
             case 'loginPage' :
+                $ctrl = new AuthController($conn);
                 $ctrl->loginPage();
                 break;
             case 'login' :
+                $ctrl = new AuthController($conn);
                 $ctrl->login();
+                break;
+            case 'dashboard' :
+                $ctrl = new AuthController($conn);
+                $ctrl->dashboardAdmin();
+                break;
+            case 'sambungan-baru':
+                $ctrl = new PermohonanController($conn);
+                $ctrl->sambunganBaru();
+                break;
+
+            default:
+                echo "404 Admin Page";
                 break;
         }
 
