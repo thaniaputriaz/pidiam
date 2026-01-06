@@ -153,12 +153,15 @@
                 <p class="text-blue-100 text-sm mb-4">
                   Lacak status verifikasi dan jadwal survei anda disini
                 </p>
-                <button
+                <a href="<?= BASE_URL ?>/permohonan/cek-status">
+                  <button
                   class="w-full cursor-pointer bg-white text-primary py-2.5 rounded-xl font-bold text-sm hover:bg-sky-50 transition-colors shadow-sm"
                 >
                   Cek Status Permohonan Anda 
                   <i class="fa-solid fa-arrow-down fa-rotate-270"></i>
                 </button>
+                </a>
+                
               </div>
               <div
                 class="absolute -bottom-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"

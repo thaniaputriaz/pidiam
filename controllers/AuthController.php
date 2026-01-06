@@ -41,7 +41,7 @@ class AuthController{
             if($user['role'] === 'admin'){
                 header("Location: " . BASE_URL . "/admin/dashboard");
             } elseif($user['role'] == 'petugas'){
-                header("Location: " . BASE_URL . "/petugas/dashboard.php");
+                header("Location: " . BASE_URL . "/petugas/dashboard.");
             }
             exit;
 
@@ -58,6 +58,8 @@ class AuthController{
         include "../views/admin/dashboard.php";
     }
 
-    
+    public function dashboardPetugas(){
+        include "../views/petugas/dashboard.php";
+    }
 }
 ?>

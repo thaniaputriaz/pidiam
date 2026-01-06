@@ -29,7 +29,7 @@ if (
     header("Location: " . BASE_URL . "/admin/loginPage"
 );
     exit;
-}
+} 
 
 switch($controller){
     case 'home':
@@ -48,6 +48,13 @@ switch($controller){
                 break;
             case 'store' :
                 $ctrl->store($_POST);
+                break;
+            case 'cek-status' :
+                if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+                    $ctrl->cekStatus();
+                } else {
+                    $ctrl->cekStatusPage();
+                }
                 break;
            
         }
@@ -74,11 +81,29 @@ switch($controller){
                 break;
             case 'sambungan-baru':
                 $ctrl = new PermohonanController($conn);
-                $ctrl->sambunganBaru();
+                $ctrl->sambunganBaru($_POST);
                 break;
-
+            case 'edit':
+                $ctrl = new PermohonanController($conn);
+                $ctrl->edit($id);
+                break;
+            case 'update':
+                $ctrl = new PermohonanController($conn);
+                $ctrl->update($id,$_POST);
+                break;
+            case 'delete':
+                $ctrl = new PermohonanController($conn);
+                $ctrl->delete($id);
+                break;
             default:
                 echo "404 Admin Page";
+                break;
+        }
+    case 'petugas' :
+        switch($method){
+            case 'dashboard' :
+                $ctrl = new AuthController($conn);
+                $ctrl->dashboardPetugas();
                 break;
         }
 

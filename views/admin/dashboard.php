@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="menu-items mt-40">
+                    <a href="<?= BASE_URL ?>/admin" class="menu-items mt-40">
                         <div class="mr-2.5">
                             <i class="fa-solid fa-house-circle-exclamation"></i>
                         </div>

@@ -1,11 +1,11 @@
 <?php if(isset($_SESSION['success'])): ?>
-    <div class="fixed top-6 left-1/2 -translate-x-1/2 z-[9999] bg-green-200 text-green-900 px-6 py-4 rounded-2xl shadow-xl">
+    <div id="alert" class="fixed top-6 left-1/2 -translate-x-1/2 z-[9999] bg-green-200 text-green-900 px-6 py-4 rounded-2xl shadow-xl">
         <?= $_SESSION['success']; ?>
     </div>
 <?php unset($_SESSION['success']); endif; ?>
 
 <?php if(isset($_SESSION['error'])): ?>
-    <div class="fixed top-6 left-1/2 -translate-x-1/2 z-[9999] bg-red-200 text-red-900 px-6 py-4 rounded-2xl shadow-xl">
+    <div id="alert" class="fixed top-6 left-1/2 -translate-x-1/2 z-[9999] bg-red-200 text-red-900 px-6 py-4 rounded-2xl shadow-xl">
         <?= $_SESSION['error']; ?>
     </div>
 <?php unset($_SESSION['error']); endif; ?>
@@ -222,4 +222,13 @@
     </div>
     
 </body>
+<script>
+    setTimeout(() => {
+        const alert = document.getElementById('alert');
+        if(alert) {
+            alert.classList.add('opacity-0');
+            setTimeout(() => alert,remove(), 700);
+        }
+    }, 3000);
+</script>
 </html>
